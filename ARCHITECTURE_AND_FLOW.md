@@ -85,3 +85,57 @@ Finally, `decision_engine.py` passes the scores through a strict, priority-based
 
 ## Summary
 By separating data ingestion, complex non-linear ML pattern detection, and deterministic explainability, this engine provides stakeholders with a fully auditable, highly accurate roadmap for their AI investments.
+
+---
+
+## 4. How to Operate the Engine
+
+Running the engine is split into two primary commands: backend processing and frontend visualization.
+
+### A. Run the Data Pipeline
+To generate fresh mock data, engineer features, run the ML models, and calculate the SHAP explainability narratives, run:
+```bash
+python -m src.data_pipeline.load_to_db
+```
+*Note: This will completely reset the SQLite database (`data/commercialization.db`) with new data.*
+
+### B. Launch the Executive Dashboard
+To start the Streamlit UI and view the results in the premium dark-mode interface:
+```bash
+streamlit run app/streamlit_app.py
+```
+
+### C. Run the Test Suite
+To verify that the decision matrix logic is functioning correctly across all boundary conditions:
+```bash
+pytest tests/ -v
+```
+
+---
+
+## 5. How to Use Your Own Real Data (CSV Import)
+
+While the engine ships with realistic mock data generators, it is fully designed to accept your real company data without requiring any code changes to the machine learning models.
+
+1. **Export the Templates:** Run the export script to generate blank/mocked CSV templates for all 5 required data tables:
+   ```bash
+   python -m src.data_pipeline.export_to_csv
+   ```
+   This will create a `data/csv/` folder containing `concepts.csv`, `demo_signals.csv`, `usage_signals.csv`, `commercial_signals.csv`, and `text_feedback.csv`.
+
+2. **Add Your Data:** Open these CSV files in Excel or Google Sheets. Delete the mock rows and paste in your real customer data. **Important:** Do not change the column header names.
+
+3. **Import Your Data:** Run the import script to wipe the mock database and load your custom CSV data directly into the SQL tables:
+   ```bash
+   python -m src.data_pipeline.import_from_csv
+   ```
+
+4. **Analyze:** Refresh your Streamlit dashboard. The ML models will automatically analyze your new data and output real business recommendations.
+
+---
+
+## 6. Other Features & Capabilities
+
+* **Tunable Business Thresholds:** You don't need to be an ML engineer to adjust how strict the engine is. Open `src/config.py` to change variables like `READINESS_HIGH`, `PILOT_BUDGET_THRESHOLD`, or `ARCHIVE_ABANDONMENT_RATE`. The decision engine will immediately adapt.
+* **Auto-Generated Strategy Memos:** The engine automatically generates a full markdown document (`reports/executive_summary.md`) containing a C-suite ready summary of the portfolio. You can download this directly from the last tab of the Streamlit dashboard.
+* **Jupyter Walkthrough:** For data scientists who want to dig into the math, the engine includes an interactive Jupyter Notebook (`notebooks/exploration_and_writeup.ipynb`) that runs the pipeline step-by-step with visualizations.
