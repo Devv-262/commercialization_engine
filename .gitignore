@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# SQLite databases
+*.sqlite
+*.db
+
+# Streamlit config (if you don't want to commit themes, but we do, so I will comment this out)
+# .streamlit/
+
+# Reports
+reports/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
