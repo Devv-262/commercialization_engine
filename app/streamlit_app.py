@@ -192,6 +192,22 @@ def render_concept_detail(state: dict):
     st.subheader("AI Narrative")
     st.info(state["narratives"][concept_id])
     
+    # Add Technicalities Section
+    features = state["features"].set_index("concept_id")
+    cluster_id = int(features.loc[concept_id, "cluster_id"]) if "cluster_id" in features.columns else "N/A"
+    
+    with st.expander("How was this generated? (ML & AI Technicalities)"):
+        st.markdown(f"""
+        **1. Unsupervised Learning (KMeans Clustering):**  
+        This concept was assigned to **Cluster {cluster_id}**. The engine grouped this concept with others exhibiting similar demand behavior to calculate its segment repeatability.
+        
+        **2. Supervised Learning (Gradient Boosting Regressor):**  
+        The Readiness Score of **{row['readiness_score']:.1f}** was predicted by a Gradient Boosting tree. It analyzed non-linear interactions between 8 engineered features (e.g., if engagement is high but decision-maker presence is 0, the score drops non-linearly).
+        
+        **3. AI Explainability (SHAP):**  
+        The narrative above and the waterfall chart below are generated dynamically using `shap.TreeExplainer`. This prevents LLM hallucination by mathematically proving exactly which features pushed the model's score up or down.
+        """)
+        
     st.subheader("SHAP Evidence Waterfall")
     st.markdown("Features pushing the readiness score up (red) vs down (blue).")
     
