@@ -226,7 +226,8 @@ def render_portfolio_visuals(state: dict):
             dist, x="Outcome", y="Count", 
             color="Outcome",
             color_discrete_map=OUTCOME_COLORS,
-            title="Concepts by Recommended Outcome"
+            title="Concepts by Recommended Outcome",
+            template="plotly_dark"
         )
         st.plotly_chart(fig1, use_container_width=True)
         
@@ -236,7 +237,8 @@ def render_portfolio_visuals(state: dict):
         fig2 = px.bar(
             imp, x="importance", y="feature",
             orientation="h",
-            title="Most Influential Signals Across Portfolio"
+            title="Most Influential Signals Across Portfolio",
+            template="plotly_dark"
         )
         fig2.update_layout(yaxis={'categoryorder':'total ascending'})
         st.plotly_chart(fig2, use_container_width=True)
@@ -253,7 +255,8 @@ def render_portfolio_visuals(state: dict):
         color_discrete_map=OUTCOME_COLORS,
         hover_name="concept_name",
         size_max=15,
-        title="Portfolio Matrix (Upper Right = MVP Build)"
+        title="Portfolio Matrix (Upper Right = MVP Build)",
+        template="plotly_dark"
     )
     # Draw quadrants
     fig3.add_hline(y=40, line_dash="dash", line_color="gray")
@@ -279,25 +282,36 @@ def render_executive_summary(state: dict):
 
 
 def main():
-    st.title("Commercialization Decision Engine")
-    
     with st.spinner("Initializing pipeline and running models..."):
         state = run_full_backend()
         
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "Portfolio Overview", 
-        "Concept Detail", 
-        "Portfolio Visuals", 
-        "Executive Summary"
-    ])
+    # --- Sidebar Navigation ---
+    with st.sidebar:
+        st.markdown("<h2 style='color:#F8FAFC; margin-bottom: 0px;'>Decision Engine</h2>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#94A3B8; margin-top: 0px; font-size: 0.9em;'>AI Commercialization Portfolio</p>", unsafe_allow_html=True)
+        st.markdown("---")
+        
+        selection = st.radio(
+            "Navigation",
+            ["Portfolio Overview", "Concept Detail", "Portfolio Visuals", "Executive Summary"],
+            label_visibility="collapsed"
+        )
+        
+        st.markdown("---")
+        st.markdown("<small style='color:#64748B;'>Engine version 1.0.0<br/>Data updated just now</small>", unsafe_allow_html=True)
+
+    # --- Top Navbar (simulated) ---
+    st.markdown("<h1 style='color:#F8FAFC;'>Commercialization Dashboard</h1>", unsafe_allow_html=True)
+    st.markdown("---")
     
-    with tab1:
+    # --- Route to specific view ---
+    if selection == "Portfolio Overview":
         render_portfolio_overview(state)
-    with tab2:
+    elif selection == "Concept Detail":
         render_concept_detail(state)
-    with tab3:
+    elif selection == "Portfolio Visuals":
         render_portfolio_visuals(state)
-    with tab4:
+    elif selection == "Executive Summary":
         render_executive_summary(state)
 
 

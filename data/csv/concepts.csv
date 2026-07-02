@@ -1,0 +1,21 @@
+concept_id,concept_name,industry,problem_area,target_user,delivery_complexity,strategic_fit
+C001,Predictive Churn Scorer,Telecom,Customer Retention,CX Ops Manager,0.4945,0.5074
+C002,Contract Risk Analyzer,Legal,Risk Mitigation,General Counsel,0.3752,0.7739
+C003,Dynamic Pricing Engine,Retail,Revenue Optimization,Pricing Director,0.5298,0.3612
+C004,Supply Chain Anomaly Detector,Manufacturing,Operational Resilience,Supply Chain Lead,0.2364,0.6822
+C005,Clinical Trial Matching AI,Healthcare,Patient Recruitment,Clinical Operations Head,0.7681,0.5169
+C006,Fraud Pattern Classifier,Financial Services,Fraud Prevention,Risk Analytics Manager,0.1728,0.5854
+C007,ESG Reporting Copilot,Energy,Sustainability Compliance,Sustainability Officer,0.6535,0.6769
+C008,Talent Intelligence Platform,HR Tech,Workforce Planning,CHRO,0.2706,0.4649
+C009,Intelligent Document Router,Insurance,Claims Processing,Operations Director,0.3119,0.5674
+C010,Demand Forecasting Suite,FMCG,Inventory Optimization,Demand Planner,0.562,0.6107
+C011,Code Review Accelerator,Software,Engineering Productivity,Engineering Manager,0.7246,0.4482
+C012,Customer Sentiment Radar,E-Commerce,Brand Experience,CMO,0.1361,0.518
+C013,Regulatory Change Monitor,Financial Services,Compliance Automation,Chief Compliance Officer,0.4876,0.6642
+C014,Field Service Optimizer,Utilities,Asset Management,Field Operations VP,0.4084,0.2688
+C015,Medical Imaging Triage AI,Healthcare,Diagnostic Efficiency,Radiology Department Head,0.1922,0.2749
+C016,Loan Default Predictor,Banking,Credit Risk,Credit Risk Officer,0.5042,0.5312
+C017,Ad Spend Optimizer,Marketing,Campaign ROI,Performance Marketing Lead,0.1979,0.638
+C018,Knowledge Graph Builder,Consulting,Knowledge Management,Chief Knowledge Officer,0.4295,0.9291
+C019,Predictive Maintenance Advisor,Aerospace,Equipment Reliability,MRO Director,0.2676,0.5663
+C020,Real-Time Translation Layer,Global Enterprises,Cross-Language Collaboration,CTO,0.3208,0.3264
